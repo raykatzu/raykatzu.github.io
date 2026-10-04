@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atajos de teclado de Microsoft Word</title>
+<style>
+/* ==================== VARIABLES Y TEMAS ==================== */
+:root{
+  --bg:#0d1017;
+  --bg-glow-1:rgba(109,139,255,.18);
+  --bg-glow-2:rgba(165,107,255,.14);
+  --card:#161b26;
+  --card-hover:#1c2231;
+  --border:#262e3f;
+  --text:#e9edf6;
+  --muted:#8c97af;
+  --accent:#6d8bff;
+  --accent-2:#a56bff;
+  --kbd-bg:#222a3b;
+  --kbd-border:#3b4560;
+  --shadow:0 12px 34px rgba(0,0,0,.40);
+  --radius:16px;
+}
+html[data-theme="light"]{
+  --bg:#f3f5fb;
+  --bg-glow-1:rgba(109,139,255,.22);
+  --bg-glow-2:rgba(165,107,255,.16);
+  --card:#ffffff;
+  --card-hover:#f7f9ff;
+  --border:#e3e8f2;
+  --text:#161c2b;
+  --muted:#6b7689;
+  --kbd-bg:#eef1f9;
+  --kbd-border:#ccd5e6;
+  --shadow:0 12px 30px rgba(28,42,80,.09);
+}
+
+/* ==================== RESET ==================== */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:background .3s ease,color .3s ease;
+}
+::selection{background:var(--accent);color:#fff;}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:11px;height:11px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:20px;border:3px solid var(--bg);}
+::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+/* ==================== HERO ==================== */
+.hero{
+  position:relative;
+  padding:80px 24px 44px;
+  text-align:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  pointer-events:none;
+}
+.hero::before{
+  width:520px;height:520px;
+  background:var(--bg-glow-1);
+  top:-280px;left:50%;transform:translateX(-70%);
+}
+.hero::after{
+  width:440px;height:440px;
+  background:var(--bg-glow-2);
+  top:-200px;left:50%;transform:translateX(10%);
+}
+.hero-inner{position:relative;z-index:2;max-width:820px;margin:0 auto;}
+
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 16px;border-radius:100px;
+  background:linear-gradient(135deg,rgba(109,139,255,.16),rgba(165,107,255,.16));
+  border:1px solid var(--border);
+  color:var(--accent);
+  margin-bottom:22px;
+}
+.badge span{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+h1{
+  font-size:clamp(2rem,5.5vw,3.4rem);
+  font-weight:800;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  margin-bottom:16px;
+}
+h1 .grad{
+  background:linear-gradient(120deg,var(--accent),var(--accent-2) 60%,#ff8fc7);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{
+  color:var(--muted);
+  font-size:1.02rem;
+  max-width:560px;
+  margin:0 auto 32px;
+}
+
+/* ==================== BUSCADOR ==================== */
+.search-wrap{
+  position:relative;
+  max-width:560px;
+  margin:0 auto;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.search-box{
+  position:relative;
+  flex:1;
+}
+.search-box svg{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;stroke:var(--muted);pointer-events:none;
+}
+#search{
+  width:100%;
+  padding:15px 46px 15px 46px;
+  font-size:.95rem;
+  font-family:inherit;
+  color:var(--text);
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  box-shadow:var(--shadow);
+  transition:border-color .2s,box-shadow .2s,background .3s;
+}
+#search::placeholder{color:var(--muted);}
+#search:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px rgba(109,139,255,.15),var(--shadow);
+}
+.clear-btn{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border-radius:50%;
+  border:none;cursor:pointer;
+  background:var(--border);color:var(--muted);
+  font-size:15px;line-height:1;
+  display:none;align-items:center;justify-content:center;
+  transition:.2s;
+}
+.clear-btn:hover{background:var(--accent);color:#fff;}
+.clear-btn.show{display:flex;}
+
+.theme-btn{
+  flex-shrink:0;
+  width:52px;height:52px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:transform .2s,background .2s,border-color .2s;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);}
+
+.hint{
+  margin-top:16px;
+  font-size:.78rem;
+  color:var(--muted);
+}
+.hint kbd{font-size:.72rem;}
+
+/* ==================== LAYOUT ==================== */
+.layout{
+  max-width:1420px;
+  margin:0 auto;
+  padding:36px 24px 100px;
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  gap:36px;
+  align-items:start;
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar{
+  position:sticky;
+  top:24px;
+  max-height:calc(100vh - 48px);
+  overflow-y:auto;
+  padding-right:6px;
+}
+.sidebar h3{
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin-bottom:14px;
+  padding-left:12px;
+}
+.nav-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+.nav-list a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 12px;
+  font-size:.86rem;
+  color:var(--muted);
+  text-decoration:none;
+  border-radius:10px;
+  border-left:2px solid transparent;
+  transition:.18s;
+}
+.nav-list a:hover{
+  color:var(--text);
+  background:var(--card);
+  border-left-color:var(--accent);
+  transform:translateX(3px);
+}
+.nav-list a .em{font-size:.95rem;width:18px;text-align:center;}
+
+/* ==================== TARJETAS ==================== */
+.content{display:flex;flex-direction:column;gap:26px;min-width:0;}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  scroll-margin-top:24px;
+  animation:rise .45s ease both;
+  transition:background .3s,border-color .3s;
+}
+@keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+.card-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 22px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(90deg,rgba(109,139,255,.07),transparent 65%);
+}
+.card-icon{
+  width:40px;height:40px;
+  flex-shrink:0;
+  display:grid;place-items:center;
+  font-size:19px;
+  border-radius:11px;
+  background:linear-gradient(135deg,rgba(109,139,255,.18),rgba(165,107,255,.18));
+  border:1px solid var(--border);
+}
+.card-head h2{
+  font-size:1.03rem;
+  font-weight:700;
+  letter-spacing:-.01em;
+  flex:1;
+}
+.count{
+  font-size:.72rem;
+  font-weight:700;
+  color:var(--accent);
+  background:rgba(109,139,255,.12);
+  border:1px solid rgba(109,139,255,.25);
+  padding:3px 10px;
+  border-radius:100px;
+}
+
+.list{list-style:none;padding:10px;}
+.shortcut{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:9px 12px;
+  border-radius:10px;
+  transition:background .15s;
+}
+.shortcut:hover{background:var(--card-hover);}
+.shortcut + .shortcut{border-top:1px solid var(--border);}
+
+.keys{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:4px;
+  flex:0 0 208px;
+}
+.desc{
+  font-size:.89rem;
+  color:var(--muted);
+  flex:1;
+  min-width:0;
+}
+
+/* ==================== TECLAS (kbd) ==================== */
+kbd{
+  display:inline-block;
+  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  font-size:.74rem;
+  font-weight:600;
+  line-height:1.2;
+  padding:.32em .58em;
+  border-radius:7px;
+  color:var(--text);
+  background:var(--kbd-bg);
+  border:1px solid var(--kbd-border);
+  border-bottom-width:2.5px;
+  white-space:nowrap;
+  transition:background .3s,border-color .3s;
+}
+
+/* ==================== ESTADOS ==================== */
+.hidden{display:none !important;}
+.no-results{
+  text-align:center;
+  padding:70px 24px;
+  color:var(--muted);
+}
+.no-results .big{font-size:44px;display:block;margin-bottom:14px;opacity:.55;}
+.no-results strong{color:var(--text);}
+
+/* ==================== FOOTER ==================== */
+footer{
+  text-align:center;
+  padding:34px 24px 46px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:.82rem;
+}
+footer strong{color:var(--accent);font-weight:600;}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr;gap:22px;padding-top:24px;}
+  .sidebar{
+    position:sticky;top:0;z-index:30;
+    max-height:none;overflow:visible;
+    margin:0 -24px;padding:12px 24px;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar h3{display:none;}
+  .nav-list{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:4px;scrollbar-width:none;}
+  .nav-list::-webkit-scrollbar{display:none;}
+  .nav-list a{
+    white-space:nowrap;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-left-width:1px;
+    padding:8px 14px;
+  }
+  .nav-list a:hover{transform:none;border-color:var(--accent);}
+}
+@media (max-width:640px){
+  .hero{padding:56px 18px 34px;}
+  .shortcut{flex-direction:column;align-items:flex-start;gap:7px;}
+  .keys{flex:0 0 auto;}
+  .search-wrap{flex-direction:column;}
+  .theme-btn{width:100%;height:46px;}
+  #search{padding-left:44px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span></span>Guía completa · Microsoft Word</div>
+    <h1>Atajos de teclado de <span class="grad">Microsoft Word</span></h1>
+    <p>Más de 250 combinaciones organizadas por categorías para que trabajes mucho más rápido. Busca, filtra y encuentra el atajo que necesitas.</p>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" id="search" placeholder="Buscar atajo o acción… (ej: pegar, Ctrl+B, tabla)" autocomplete="off" spellcheck="false">
+        <button class="clear-btn" id="clearBtn" title="Limpiar">✕</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" title="Cambiar tema">🌙</button>
+    </div>
+
+    <div class="hint">Pulsa <kbd>/</kbd> para buscar · <kbd>Esc</kbd> para limpiar</div>
+  </div>
+</header>
+
+<!-- ==================== CONTENIDO ==================== -->
+<div class="layout">
+  <aside class="sidebar">
+    <h3>Categorías</h3>
+    <nav class="nav-list" id="navList"></nav>
+  </aside>
+
+  <main class="content" id="content"></main>
+</div>
+
+<footer>
+  Hecho con <strong>♥</strong> para quienes escriben mucho · Word para Windows (y notas para macOS)
+</footer>
+
+<script>
+/* =========================================================
+   DATOS: [ "Teclas", "Descripción" ]
+   ========================================================= */
+const DATA = [
+{ id:"frecuentes", icon:"🔥", name:"Atajos más usados", items:[
+  ["Ctrl + A","Seleccionar todo el documento"],
+  ["Ctrl + B","Negrita"],
+  ["Ctrl + C","Copiar"],
+  ["Ctrl + D","Abrir el cuadro de diálogo Fuente"],
+  ["Ctrl + E","Centrar el texto"],
+  ["Ctrl + F","Buscar"],
+  ["Ctrl + G","Ir a (página, marcador, sección…)"],
+  ["Ctrl + H","Reemplazar"],
+  ["Ctrl + I","Cursiva"],
+  ["Ctrl + J","Justificar el texto"],
+  ["Ctrl + K","Insertar hipervínculo"],
+  ["Ctrl + L","Alinear a la izquierda"],
+  ["Ctrl + M","Aumentar la sangría"],
+  ["Ctrl + N","Nuevo documento"],
+  ["Ctrl + O","Abrir documento"],
+  ["Ctrl + P","Imprimir"],
+  ["Ctrl + Q","Quitar el formato de párrafo"],
+  ["Ctrl + R","Alinear a la derecha"],
+  ["Ctrl + S","Guardar"],
+  ["Ctrl + T","Sangría francesa"],
+  ["Ctrl + U","Subrayado"],
+  ["Ctrl + V","Pegar"],
+  ["Ctrl + X","Cortar"],
+  ["Ctrl + Y","Rehacer"],
+  ["Ctrl + Z","Deshacer"],
+]},
+
+{ id:"documentos", icon:"📁", name:"Gestión de documentos", items:[
+  ["Ctrl + N","Crear un nuevo documento"],
+  ["Ctrl + O","Abrir un documento"],
+  ["Ctrl + S","Guardar el documento"],
+  ["F12","Guardar como"],
+  ["Ctrl + W","Cerrar el documento"],
+  ["Ctrl + F6","Cambiar entre documentos de Word abiertos"],
+  ["Ctrl + Shift + F12","Opciones de impresión"],
+  ["Alt + Ctrl + S","Dividir la ventana del documento"],
+  ["Alt + Shift + C","Quitar la división de la ventana"],
+]},
+
+{ id:"navegacion", icon:"🧭", name:"Navegación en el documento", items:[
+  ["← / →","Ir un carácter a la izquierda / derecha"],
+  ["Ctrl + ← / →","Ir una palabra a la izquierda / derecha"],
+  ["Inicio / Fin","Ir al principio / final de la línea"],
+  ["↑ / ↓","Saltar una línea arriba / abajo"],
+  ["Ctrl + ↑ / ↓","Saltar un párrafo arriba / abajo"],
+  ["Re Pág / Av Pág","Saltar una pantalla arriba / abajo"],
+  ["Ctrl + Inicio","Ir al inicio del documento"],
+  ["Ctrl + Fin","Ir al final del documento"],
+  ["F5","Abrir el cuadro de diálogo Ir a"],
+  ["Ctrl + G","Abrir el cuadro de diálogo Ir a"],
+  ["Shift + F5","Ir a la ubicación de la revisión anterior"],
+  ["Tab","Avanzar por las opciones"],
+  ["Shift + Tab","Retroceder por las opciones"],
+]},
+
+{ id:"seleccion", icon:"🖱️", name:"Selección de texto", items:[
+  ["Shift + ← / →","Ampliar la selección un carácter"],
+  ["Ctrl + Shift + ← / →","Ampliar la selección una palabra"],
+  ["Shift + Inicio","Ampliar hasta el inicio de la línea"],
+  ["Shift + Fin","Ampliar hasta el final de la línea"],
+  ["Shift + ↑ / ↓","Ampliar la selección una línea"],
+  ["Shift + Re Pág / Av Pág","Ampliar la selección una pantalla"],
+  ["Ctrl + Shift + Inicio","Ampliar hasta el inicio del documento"],
+  ["Ctrl + Shift + Fin","Ampliar hasta el final del documento"],
+  ["Ctrl + A","Seleccionar todo el documento"],
+  ["F8","Activar el modo extendido de selección"],
+  ["Shift + F8","Reducir la selección"],
+  ["Ctrl + Shift + F8","Modo de selección de columna"],
+  ["Esc","Desactivar el modo de selección extendida"],
+]},
+
+{ id:"portapapeles", icon:"📋", name:"Deshacer, copiar y pegar", items:[
+  ["Ctrl + Z","Deshacer la última acción"],
+  ["Ctrl + Y","Rehacer la última acción"],
+  ["Ctrl + C","Copiar el texto u objeto seleccionado"],
+  ["Ctrl + X","Cortar el texto u objeto seleccionado"],
+  ["Ctrl + V","Pegar el texto u objeto seleccionado"],
+  ["Ctrl + Shift + C","Copiar el formato del texto"],
+  ["Ctrl + Shift + V","Pegar el formato del texto"],
+  ["Ctrl + Alt + V","Pegado especial"],
+  ["Alt + F3","Crear un bloque de Autotexto"],
+  ["Ctrl + F3","Cortar a la Espiga (Spike)"],
+  ["Ctrl + Shift + F3","Pegar el contenido de la Espiga"],
+  ["F2","Mover el texto o gráfico seleccionado"],
+  ["Shift + F2","Copiar el texto o gráfico seleccionado"],
+]},
+
+{ id:"edicion", icon:"✏️", name:"Edición de texto y gráficos", items:[
+  ["Ctrl + Retroceso","Eliminar una palabra a la izquierda"],
+  ["Ctrl + Supr","Eliminar una palabra a la derecha"],
+  ["Enter","Insertar un salto de línea"],
+  ["Ctrl + Enter","Insertar un salto de página"],
+  ["Ctrl + Shift + Enter","Insertar un salto de columna"],
+  ["Ctrl + Alt + K","Activar AutoFormato"],
+  ["Alt + Ctrl + M","Insertar un comentario"],
+  ["Ctrl + Alt + F","Insertar una nota al pie"],
+  ["Ctrl + Alt + D","Insertar una nota al final"],
+  ["Alt + Ctrl + L","Insertar un campo LISTNUM"],
+  ["Alt + Shift + D","Insertar un campo DATE (fecha)"],
+  ["Alt + Shift + P","Insertar un campo PAGE (página)"],
+  ["Alt + Shift + T","Insertar un campo TIME (hora)"],
+  ["Ctrl + F9","Insertar un campo vacío"],
+  ["F9","Actualizar los campos seleccionados"],
+  ["Shift + F9","Alternar código de campo / resultado"],
+  ["Alt + F9","Alternar todos los códigos de campo"],
+  ["Ctrl + Shift + F9","Desvincular un campo"],
+  ["Ctrl + F11","Bloquear un campo"],
+  ["Ctrl + Shift + F11","Desbloquear un campo"],
+  ["F11","Ir al campo siguiente"],
+  ["Shift + F11","Ir al campo anterior"],
+]},
+
+{ id:"caracteres", icon:"🔤", name:"Formato de caracteres", items:[
+  ["Ctrl + B","Negrita"],
+  ["Ctrl + I","Cursiva"],
+  ["Ctrl + U","Subrayado"],
+  ["Ctrl + Shift + W","Subrayar palabras pero no espacios"],
+  ["Ctrl + Shift + D","Doble subrayado"],
+  ["Ctrl + Shift + K","Versalitas (small caps)"],
+  ["Ctrl + Shift + A","Formato de mayúsculas"],
+  ["Ctrl + =","Subíndice"],
+  ["Ctrl + Shift + +","Superíndice"],
+  ["Ctrl + D","Abrir el cuadro de diálogo Fuente"],
+  ["Ctrl + Shift + F","Abrir el cuadro de diálogo Fuente"],
+  ["Ctrl + Shift + >","Aumentar el tamaño de la fuente"],
+  ["Ctrl + Shift + <","Disminuir el tamaño de la fuente"],
+  ["Ctrl + ]","Aumentar la fuente 1 punto"],
+  ["Ctrl + [","Disminuir la fuente 1 punto"],
+  ["Shift + F3","Alternar MAYÚSCULAS / minúsculas / Tipo título"],
+  ["Ctrl + Shift + H","Ocultar el texto seleccionado"],
+  ["Ctrl + Espacio","Quitar el formato manual de caracteres"],
+  ["Ctrl + Shift + Q","Cambiar a la fuente Symbol"],
+]},
+
+{ id:"parrafos", icon:"📐", name:"Formato de párrafos", items:[
+  ["Ctrl + E","Centrar el párrafo"],
+  ["Ctrl + J","Justificar el párrafo"],
+  ["Ctrl + L","Alinear a la izquierda"],
+  ["Ctrl + R","Alinear a la derecha"],
+  ["Ctrl + M","Aumentar la sangría"],
+  ["Ctrl + Shift + M","Quitar la sangría"],
+  ["Ctrl + T","Crear una sangría francesa"],
+  ["Ctrl + Shift + T","Quitar la sangría francesa"],
+  ["Ctrl + Q","Quitar el formato de párrafo"],
+  ["Ctrl + 1","Interlineado sencillo"],
+  ["Ctrl + 2","Interlineado doble"],
+  ["Ctrl + 5","Interlineado de 1,5 líneas"],
+  ["Ctrl + 0","Agregar o quitar espacio antes del párrafo"],
+  ["Ctrl + Shift + N","Aplicar el estilo Normal"],
+  ["Ctrl + Alt + 1","Aplicar el estilo Título 1"],
+  ["Ctrl + Alt + 2","Aplicar el estilo Título 2"],
+  ["Ctrl + Alt + 3","Aplicar el estilo Título 3"],
+  ["Ctrl + Shift + S","Abrir el panel Aplicar estilos"],
+  ["Ctrl + Alt + Shift + S","Abrir el panel de Estilos"],
+]},
+
+{ id:"listas", icon:"🔹", name:"Listas", items:[
+  ["Ctrl + Shift + L","Aplicar una lista con viñetas"],
+]},
+
+{ id:"tablas", icon:"🧮", name:"Trabajar con tablas", items:[
+  ["Tab","Moverse a la celda siguiente"],
+  ["Shift + Tab","Moverse a la celda anterior"],
+  ["Alt + Inicio","Primera celda de la fila"],
+  ["Alt + Fin","Última celda de la fila"],
+  ["Alt + Re Pág","Primera celda de la columna"],
+  ["Alt + Av Pág","Última celda de la columna"],
+  ["Ctrl + A","Seleccionar toda la tabla (cursor dentro)"],
+  ["Enter","Insertar un nuevo párrafo en una celda"],
+  ["Ctrl + Tab","Insertar una tabulación dentro de una celda"],
+  ["Alt + 5","Seleccionar toda la tabla (teclado numérico, Bloq Num desactivado)"],
+]},
+
+{ id:"revision", icon:"✅", name:"Revisión de documentos", items:[
+  ["Ctrl + Alt + M","Insertar un comentario"],
+  ["Ctrl + Shift + E","Activar o desactivar el control de cambios"],
+  ["Alt + Shift + C","Cerrar el panel de revisiones"],
+  ["F7","Abrir el panel Editor (ortografía y gramática)"],
+  ["Shift + F7","Abrir el panel de Sinónimos (Tesauro)"],
+  ["Alt + F7","Buscar el siguiente error ortográfico"],
+  ["Alt + Shift + F7","Abrir el panel del Traductor"],
+]},
+
+{ id:"referencias", icon:"📚", name:"Referencias, citas e índices", items:[
+  ["Alt + Shift + O","Marcar una entrada de tabla de contenido"],
+  ["Alt + Shift + I","Marcar una entrada de tabla de autoridades"],
+  ["Alt + Shift + F12","Elegir opciones de cita"],
+  ["Alt + Shift + X","Marcar una entrada de índice"],
+  ["Ctrl + Alt + F","Insertar una nota al pie"],
+  ["Ctrl + Alt + D","Insertar una nota al final"],
+  ["Alt + Shift + >","Ir a la nota al pie siguiente"],
+  ["Alt + Shift + <","Ir a la nota al pie anterior"],
+]},
+
+{ id:"correspondencia", icon:"✉️", name:"Combinar correspondencia", items:[
+  ["Alt + M","Seleccionar la pestaña Correspondencia"],
+  ["Alt + Shift + K","Vista previa de la combinación"],
+  ["Alt + Shift + N","Combinar un documento"],
+  ["Alt + Shift + M","Imprimir el documento combinado"],
+  ["Alt + Shift + E","Editar un documento de datos"],
+  ["Alt + Shift + F","Insertar un campo de combinación"],
+]},
+
+{ id:"vistas", icon:"👁️", name:"Vistas de documento", items:[
+  ["Alt + W + F","Cambiar a la vista Modo de lectura"],
+  ["Ctrl + Alt + P","Vista Diseño de impresión"],
+  ["Ctrl + Alt + O","Vista Esquema"],
+  ["Ctrl + Alt + N","Vista Borrador"],
+  ["Ctrl + Alt + I","Vista previa de impresión"],
+]},
+
+{ id:"esquema", icon:"🗂️", name:"Esquema del documento", items:[
+  ["Alt + Shift + ←","Promover un párrafo"],
+  ["Alt + Shift + →","Degradar un párrafo"],
+  ["Ctrl + Shift + N","Degradar el párrafo a texto normal"],
+  ["Alt + Shift + ↑","Mover los párrafos hacia arriba"],
+  ["Alt + Shift + ↓","Mover los párrafos hacia abajo"],
+  ["Alt + Shift + +","Expandir el texto bajo un encabezado"],
+  ["Alt + Shift + -","Contraer el texto bajo un encabezado"],
+  ["Alt + Shift + A","Expandir o contraer todo el texto"],
+  ["Alt + Shift + L","Mostrar la primera línea o todo el texto"],
+  ["Alt + Shift + 1","Mostrar todos los encabezados Título 1"],
+]},
+
+{ id:"funcion", icon:"⌨️", name:"Teclas de función", items:[
+  ["F1","Abrir el panel de ayuda de Word"],
+  ["Shift + F1","Ayuda contextual / Revelar formato"],
+  ["Ctrl + F1","Mostrar u ocultar la cinta de opciones"],
+  ["Alt + F1","Ir al campo siguiente"],
+  ["Alt + Shift + F1","Ir al campo anterior"],
+  ["F2","Mover el texto o gráfico seleccionado"],
+  ["Shift + F2","Copiar el texto o gráfico seleccionado"],
+  ["Ctrl + F2","Vista previa de impresión"],
+  ["Alt + Shift + F2","Guardar el documento"],
+  ["Ctrl + Alt + F2","Abrir el cuadro de diálogo Abrir"],
+  ["F3","Insertar un bloque de Autotexto"],
+  ["Shift + F3","Cambiar mayúsculas / minúsculas / Título"],
+  ["Ctrl + F3","Cortar a la Espiga (Spike)"],
+  ["Ctrl + Shift + F3","Pegar el contenido de la Espiga"],
+  ["F4","Repetir la última acción"],
+  ["F5","Abrir el cuadro de diálogo Ir a"],
+  ["F6","Cambiar entre documento, panel y cinta"],
+  ["Ctrl + F6","Cambiar a la siguiente ventana"],
+  ["Ctrl + Shift + F6","Cambiar a la ventana anterior"],
+  ["F7","Revisar ortografía y gramática"],
+  ["F8","Extender la selección"],
+  ["Alt + F8","Abrir el cuadro de diálogo Macro"],
+  ["F9","Actualizar los campos seleccionados"],
+  ["F10","Activar o desactivar las teclas de acceso"],
+  ["Shift + F10","Mostrar el menú contextual"],
+  ["Ctrl + F10","Maximizar o restaurar la ventana"],
+  ["Alt + F10","Mostrar el panel Selección"],
+  ["Alt + F11","Abrir el Editor de Visual Basic"],
+  ["F12","Abrir el cuadro de diálogo Guardar como"],
+  ["Shift + F12","Guardar el documento"],
+  ["Ctrl + F12","Abrir el cuadro de diálogo Abrir"],
+]},
+
+{ id:"cinta", icon:"🎀", name:"Trabajar con la cinta de opciones", items:[
+  ["Alt","Activar las teclas de acceso de la cinta"],
+  ["Alt + Q","Ir a «Dime qué quieres hacer» / Buscar"],
+  ["Alt + F","Abrir la página Archivo"],
+  ["Alt + H","Abrir la pestaña Inicio"],
+  ["Alt + N","Abrir la pestaña Insertar"],
+  ["Alt + G","Abrir la pestaña Diseño"],
+  ["Alt + P","Abrir la pestaña Disposición"],
+  ["Alt + S","Abrir la pestaña Referencias"],
+  ["Alt + M","Abrir la pestaña Correspondencia"],
+  ["Alt + R","Abrir la pestaña Revisar"],
+  ["Alt + W","Abrir la pestaña Vista"],
+  ["Tab","Moverse por los comandos de la cinta"],
+  ["Shift + Tab","Moverse hacia atrás por los comandos"],
+  ["Ctrl + ← / →","Moverse entre grupos de comandos"],
+  ["Espacio / Enter","Activar el botón seleccionado"],
+  ["Alt + ↓","Abrir el menú del botón seleccionado"],
+]},
+
+{ id:"especiales", icon:"✨", name:"Caracteres especiales", items:[
+  ["Shift + Enter","Insertar un salto de línea"],
+  ["Ctrl + Enter","Insertar un salto de página"],
+  ["Ctrl + Shift + Enter","Insertar un salto de columna"],
+  ["Ctrl + Alt + -","Insertar un guion largo (—)"],
+  ["Ctrl + -","Insertar un guion corto (–)"],
+  ["Ctrl + -","Insertar un guion opcional"],
+  ["Ctrl + Shift + -","Insertar un guion de no separación"],
+  ["Ctrl + Shift + Espacio","Insertar un espacio de no separación"],
+  ["Alt + Ctrl + C","Insertar el símbolo de copyright (©)"],
+  ["Alt + Ctrl + R","Insertar el símbolo de marca registrada (®)"],
+  ["Alt + Ctrl + T","Insertar el símbolo de marca comercial (™)"],
+  ["Alt + Ctrl + .","Insertar puntos suspensivos (…)"],
+  ["Alt + X","Insertar el carácter Unicode del código hexadecimal"],
+]},
+
+{ id:"web", icon:"🌐", name:"Contenido web e hipervínculos", items:[
+  ["Ctrl + K","Insertar un hipervínculo"],
+  ["Alt + ←","Retroceder una página"],
+  ["Alt + →","Avanzar una página"],
+  ["F9","Actualizar los campos seleccionados"],
+]},
+
+{ id:"mac", icon:"🍎", name:"macOS (usa ⌘ en lugar de Ctrl)", items:[
+  ["⌘ + N","Nuevo documento"],
+  ["⌘ + O","Abrir documento"],
+  ["⌘ + S","Guardar documento"],
+  ["⌘ + Shift + S","Guardar como"],
+  ["⌘ + W","Cerrar documento"],
+  ["⌘ + P","Imprimir"],
+  ["⌘ + Z","Deshacer"],
+  ["⌘ + Y","Rehacer"],
+  ["⌘ + X","Cortar"],
+  ["⌘ + C","Copiar"],
+  ["⌘ + V","Pegar"],
+  ["⌘ + Shift + C","Copiar formato"],
+  ["⌘ + Shift + V","Pegar formato"],
+  ["⌘ + B","Negrita"],
+  ["⌘ + I","Cursiva"],
+  ["⌘ + U","Subrayado"],
+  ["⌘ + E","Centrar"],
+  ["⌘ + L","Alinear a la izquierda"],
+  ["⌘ + R","Alinear a la derecha"],
+  ["⌘ + K","Insertar hipervínculo"],
+  ["⌘ + F","Buscar"],
+  ["⌘ + H","Buscar y reemplazar"],
+  ["⌘ + A","Seleccionar todo"],
+  ["⌘ + ⌥ + M","Insertar comentario"],
+  ["⌘ + Shift + E","Activar o desactivar control de cambios"],
+  ["⌥ + ⌘ + F","Insertar nota al pie"],
+  ["⌥ + ⌘ + E","Insertar nota al final"],
+  ["⌥ + F7","Buscar el siguiente error ortográfico"],
+]}
+];
+
+/* =========================================================
+   RENDERIZADO
+   ========================================================= */
+const content  = document.getElementById('content');
+const navList  = document.getElementById('navList');
+const searchEl = document.getElementById('search');
+const clearBtn = document.getElementById('clearBtn');
+const themeBtn = document.getElementById('themeBtn');
+
+let total = 0;
+
+function buildKeys(str){
+  return str.split(' + ').map(k => `<kbd>${k}</kbd>`).join('');
+}
+
+function render(){
+  content.innerHTML = DATA.map(cat => {
+    total += cat.items.length;
+    return `
+    <section class="card" id="${cat.id}">
+      <div class="card-head">
+        <div class="card-icon">${cat.icon}</div>
+        <h2>${cat.name}</h2>
+        <span class="count">${cat.items.length}</span>
+      </div>
+      <ul class="list">
+        ${cat.items.map(([k, d]) => `
+          <li class="shortcut" data-search="${(k + ' ' + d).toLowerCase()}">
+            <span class="keys">${buildKeys(k)}</span>
+            <span class="desc">${d}</span>
+          </li>`).join('')}
+      </ul>
+    </section>`;
+  }).join('') + `
+    <div class="no-results hidden" id="noResults">
+      <span class="big">🔍</span>
+      No se encontraron atajos para <strong id="noTerm"></strong><br>
+      Intenta con otra palabra, por ejemplo «pegar», «tabla» o «negrita».
+    </div>`;
+
+  navList.innerHTML = DATA.map(cat =>
+    `<a href="#${cat.id}" data-target="${cat.id}">
+       <span class="em">${cat.icon}</span>${cat.name}
+     </a>`).join('');
+}
+
+render();
+
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+function filter(){
+  const q = searchEl.value.trim().toLowerCase();
+  let visibles = 0;
+
+  document.querySelectorAll('.shortcut').forEach(el => {
+    const ok = !q || el.dataset.search.includes(q);
+    el.classList.toggle('hidden', !ok);
+    if (ok) visibles++;
+  });
+
+  document.querySelectorAll('.card').forEach(card => {
+    const hay = card.querySelectorAll('.shortcut:not(.hidden)').length > 0;
+    card.classList.toggle('hidden', !hay);
+
+    const link = navList.querySelector(`a[data-target="${card.id}"]`);
+    if (link) link.classList.toggle('hidden', !hay);
+  });
+
+  const noRes = document.getElementById('noResults');
+  if (noRes){
+    noRes.classList.toggle('hidden', visibles > 0);
+    document.getElementById('noTerm').textContent = '“' + searchEl.value.trim() + '”';
+  }
+
+  clearBtn.classList.toggle('show', q.length > 0);
+}
+
+searchEl.addEventListener('input', filter);
+
+clearBtn.addEventListener('click', () => {
+  searchEl.value = '';
+  filter();
+  searchEl.focus();
+});
+
+/* Atajos globales */
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== searchEl){
+    e.preventDefault();
+    searchEl.focus();
+  }
+  if (e.key === 'Escape'){
+    searchEl.value = '';
+    filter();
+    searchEl.blur();
+  }
+});
+
+/* =========================================================
+   TEMA CLARO / OSCURO
+   ========================================================= */
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeBtn.textContent = t === 'dark' ? '🌙' : '☀️';
+  try { localStorage.setItem('wordTheme', t); } catch(e){}
+}
+
+let saved = 'dark';
+try { saved = localStorage.getItem('wordTheme') || 'dark'; } catch(e){}
+applyTheme(saved);
+
+themeBtn.addEventListener('click', () => {
+  const now = document.documentElement.getAttribute('data-theme');
+  applyTheme(now === 'dark' ? 'light' : 'dark');
+});
+</script>
+</body>
+</html>
